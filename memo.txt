@@ -1,1 +1,1 @@
-cd \Users\axisv\Documents\GitHub\Archer-ReactNative
+cd \Users\axisv\Documents\GitHub\Archer-ReactNative\Archer
