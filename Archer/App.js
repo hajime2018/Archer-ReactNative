@@ -1,18 +1,9 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
-export default class App extends React.Component {
-  render() {
-    return (
-        <View style={styles.container}>
-            <Text>Archer!</Text>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
-    );
-  }
-}
+﻿import React from 'react';
+import { Button, StyleSheet, Text, View } from 'react-native'
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { createBottomTabNavigator, BottomTabBar, StackNavigator ,TabNavigator} from 'react-navigation';
+import HomeScreen from './HomeScreen';
+import MyPageScreen from './MyPageScreen';
 
 const styles = StyleSheet.create({
   container: {
@@ -22,3 +13,46 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+
+
+const RootBottomTabNavigator = createBottomTabNavigator (
+    {
+        Home: {
+            screen: HomeScreen,
+        },
+        MyPage: {
+            screen: MyPageScreen,
+        },
+        
+    },
+    {
+        //initialRouteName: 'Home',
+        navigationOptions: ({ navigation }) => ({
+            tabBarIcon: ({ focused, tintColor }) => {
+                const { routeName } = navigation.state;
+                let iconName;
+                if (routeName === 'Home') {
+                    iconName = `ios-home${focused ? '' : '-outline'}`;
+                } else if (routeName === 'MyPage') {
+                    iconName = `ios-person${focused ? '' : '-outline'}`;
+                }
+
+                // You can return any component that you like here! We usually use an
+                // icon component from react-native-vector-icons
+                return <Ionicons name={iconName} size={25} color={tintColor} />;
+            },
+        }),
+        tabBarOptions: {
+            activeTintColor: 'tomato',
+            inactiveTintColor: 'gray',
+        },
+    }  
+);
+
+export default class App extends React.Component {
+    render() {
+        return <RootBottomTabNavigator />;
+    }
+}
+
