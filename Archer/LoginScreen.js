@@ -1,8 +1,6 @@
-Ôªøimport React from 'react';
+import React from 'react';
 import firebase from 'firebase';
-import LoginScreen from './LoginScreen';
 import { Button, StyleSheet, Text, View } from 'react-native'
-import { createBottomTabNavigator, BottomTabBar, StackNavigator, TabNavigator, createStackNavigator } from 'react-navigation';
 
 const styles = StyleSheet.create({
     container: {
@@ -13,13 +11,14 @@ const styles = StyleSheet.create({
     },
 });
 
-class MyPageScreen extends React.Component {
+
+class LoginScreen extends React.Component {
     render() {
         return (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <Text>„Éû„Ç§„Éö„Éº„Ç∏</Text>
+                <Text>É}ÉCÉyÅ[ÉW</Text>
                 <Button
-                    title="„Éõ„Éº„É†„Å∏"
+                    title="ÉzÅ[ÉÄÇ÷"
                     onPress={() => this.props.navigation.navigate('Home')}
                 />
             </View>
@@ -27,4 +26,4 @@ class MyPageScreen extends React.Component {
     }
 }
 
-export default (MyPageScreen);
+export default (LoginScreen);

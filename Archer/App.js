@@ -1,9 +1,14 @@
 ﻿import React from 'react';
+import firebase from 'firebase';
 import { Button, StyleSheet, Text, View } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { createBottomTabNavigator, BottomTabBar, StackNavigator ,TabNavigator} from 'react-navigation';
 import HomeScreen from './HomeScreen';
 import MyPageScreen from './MyPageScreen';
+import LoginScreen from './LoginScreen';
+
+//GLOBAL
+state = { loggedIn: null };
 
 const styles = StyleSheet.create({
   container: {
@@ -24,7 +29,6 @@ const RootBottomTabNavigator = createBottomTabNavigator (
         MyPage: {
             screen: MyPageScreen,
         },
-        
     },
     {
         //initialRouteName: 'Home',
@@ -50,9 +54,32 @@ const RootBottomTabNavigator = createBottomTabNavigator (
     }  
 );
 
-export default class App extends React.Component {
+class App extends React.Component {
+    componentWillMount() {
+        firebase.initializeApp({
+            apiKey: "AIzaSyBK8ri7rFLGHWz10l9BH6xYG82PjweYECk",
+            authDomain: "archer-corp.firebaseapp.com",
+            databaseURL: "https://archer-corp.firebaseio.com",
+            projectId: "archer-corp",
+            storageBucket: "archer-corp.appspot.com",
+            messagingSenderId: "208210760399"
+        });
+
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                this.setState({ loggedIn: true });
+                console.log("logged in");
+            } else {
+                this.setState({ loggedIn: false });
+                console.log("not logged in");
+            }
+        })
+    }
+
     render() {
         return <RootBottomTabNavigator />;
     }
 }
+
+export default (App);
 
