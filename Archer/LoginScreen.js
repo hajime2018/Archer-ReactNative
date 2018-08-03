@@ -1,4 +1,4 @@
-import React from 'react';
+Ôªøimport React from 'react';
 import firebase from 'firebase';
 import { Button, StyleSheet, Text, View } from 'react-native'
 
@@ -16,9 +16,9 @@ class LoginScreen extends React.Component {
     render() {
         return (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <Text>É}ÉCÉyÅ[ÉW</Text>
+                <Text>„É≠„Ç∞„Ç§„É≥„Éö„Éº„Ç∏</Text>
                 <Button
-                    title="ÉzÅ[ÉÄÇ÷"
+                    title="„É≠„Ç∞„Ç§„É≥ÔºÅ"
                     onPress={() => this.props.navigation.navigate('Home')}
                 />
             </View>

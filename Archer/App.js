@@ -2,10 +2,11 @@
 import firebase from 'firebase';
 import { Button, StyleSheet, Text, View } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { createBottomTabNavigator, BottomTabBar, StackNavigator ,TabNavigator} from 'react-navigation';
+import { createBottomTabNavigator, BottomTabBar, StackNavigator ,TabNavigator,createStackNavigator,createMaterialTopTabNavigator} from 'react-navigation';
 import HomeScreen from './HomeScreen';
 import MyPageScreen from './MyPageScreen';
 import LoginScreen from './LoginScreen';
+import SignupScreen from './SignupScreen';
 
 //GLOBAL
 state = { loggedIn: null };
@@ -19,15 +20,33 @@ const styles = StyleSheet.create({
   },
 });
 
+const AccountTabNavigator = createMaterialTopTabNavigator(
+    {
+        Login: {screen: LoginScreen,},
+        Signup: {screen: SignupScreen,},
+    }
+);
+
+const MyPageStuckNavigator = createStackNavigator(
+    {
+        MyPage: {
+            screen: MyPageScreen,
+        },
+        Login: {
+            screen: AccountTabNavigator,
+        }
+    }
+);
+
 
 
 const RootBottomTabNavigator = createBottomTabNavigator (
     {
         Home: {
-            screen: HomeScreen,
+            screen:HomeScreen
         },
         MyPage: {
-            screen: MyPageScreen,
+            screen: MyPageStuckNavigator,
         },
     },
     {
@@ -77,7 +96,7 @@ class App extends React.Component {
     }
 
     render() {
-        return <RootBottomTabNavigator />;
+        return <RootBottomTabNavigator/>;
     }
 }
 

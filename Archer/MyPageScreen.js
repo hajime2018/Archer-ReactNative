@@ -22,6 +22,11 @@ class MyPageScreen extends React.Component {
                     title="ホームへ"
                     onPress={() => this.props.navigation.navigate('Home')}
                 />
+                <Text>{"\n"}</Text>
+                <Button
+                    title="Log in or Sign up"
+                    onPress={() => this.props.navigation.navigate('Login')}
+                />
             </View>
         );
     }
