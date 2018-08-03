@@ -1,0 +1,7 @@
+
+
+プロジェクトフォルダへの移動用
+cd \Users\axisv\Documents\GitHub\Archer-ReactNative\Archer（井上）
+
+デバッグ開始
+npm start
