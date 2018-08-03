@@ -7,6 +7,7 @@ import HomeScreen from './HomeScreen';
 import MyPageScreen from './MyPageScreen';
 import LoginScreen from './LoginScreen';
 import SignupScreen from './SignupScreen';
+import RankingScreen from './RankingScreen';
 
 //GLOBAL
 state = { loggedIn: null };
@@ -27,6 +28,15 @@ const AccountTabNavigator = createMaterialTopTabNavigator(
     }
 );
 
+const RankingTabNavigator = createMaterialTopTabNavigator(
+    {
+        Rise: { screen:RankingScreen , },
+        Day: { screen: RankingScreen ,},
+        Week: { screen: RankingScreen,},
+        Total: { screen: RankingScreen ,},
+    }
+);
+
 const MyPageStuckNavigator = createStackNavigator(
     {
         MyPage: {
@@ -43,7 +53,10 @@ const MyPageStuckNavigator = createStackNavigator(
 const RootBottomTabNavigator = createBottomTabNavigator (
     {
         Home: {
-            screen:HomeScreen
+            screen:HomeScreen,
+        },
+        Ranking: {
+            screen:RankingTabNavigator,
         },
         MyPage: {
             screen: MyPageStuckNavigator,
@@ -59,6 +72,8 @@ const RootBottomTabNavigator = createBottomTabNavigator (
                     iconName = `ios-home${focused ? '' : '-outline'}`;
                 } else if (routeName === 'MyPage') {
                     iconName = `ios-person${focused ? '' : '-outline'}`;
+                } else if (routeName === 'Ranking') {
+                    iconName = `ios-star${focused ? '' : '-outline'}`;
                 }
 
                 // You can return any component that you like here! We usually use an
