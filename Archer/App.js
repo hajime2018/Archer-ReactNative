@@ -31,10 +31,17 @@ const AccountTabNavigator = createMaterialTopTabNavigator(
 
 const RankingTabNavigator = createMaterialTopTabNavigator(
     {
-        Rise: { screen:RankingScreen , },
-        Day: { screen: RankingScreen ,},
+        Rise: {
+            screen: RankingScreen,
+        },
+    
+
+        Day: { screen: RankingScreen,},
         Week: { screen: RankingScreen,},
-        Total: { screen: RankingScreen ,},
+        Total: { screen: RankingScreen,},
+    },
+    {
+        header:null
     }
 );
 
@@ -57,7 +64,7 @@ const RootBottomTabNavigator = createBottomTabNavigator (
             screen:HomeScreen,
         },
         Ranking: {
-            screen:RankingTabNavigator,
+            screen: RankingTabNavigator,
         },
         MyPage: {
             screen: MyPageStuckNavigator,
