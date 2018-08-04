@@ -10,7 +10,8 @@ import SignupScreen from './SignupScreen';
 import RankingScreen from './RankingScreen';
 
 //GLOBAL
-state = { loggedIn: null };
+var Archer = {};
+Archer.loggedIn = null;
 
 const styles = StyleSheet.create({
   container: {
@@ -88,6 +89,7 @@ const RootBottomTabNavigator = createBottomTabNavigator (
     }  
 );
 
+//
 class App extends React.Component {
     componentWillMount() {
         firebase.initializeApp({
