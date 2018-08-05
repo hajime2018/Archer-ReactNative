@@ -23,6 +23,7 @@ class HomeScreen extends React.Component {
                     title="マイページへ"
                     onPress={() => this.props.navigation.navigate('MyPage')}
                 />
+                <Text>ブランチテストのための文字列</Text>
 
             </View>
             
