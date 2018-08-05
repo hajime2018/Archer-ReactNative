@@ -1,6 +1,6 @@
-﻿import React from 'react';
+import React from 'react';
 import firebase from 'firebase';
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { Button, StyleSheet, Text, TextInput, View } from 'react-native'
 
 const styles = StyleSheet.create({
     container: {
@@ -16,8 +16,8 @@ class SignupScreen extends React.Component {
 
     //TODO
     state = {
-        email: 'test1@gmail.com',
-        password: 'PassWord1',
+        email: '',
+        password: '',
         confirmPassword: '',
     };
 
@@ -31,17 +31,28 @@ class SignupScreen extends React.Component {
             });
         //this.props.history.push("/");
         this.props.navigation.navigate('Home')
-    
+
     }
 
     render() {
         return (
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <View>
                 <Text>登録ページ</Text>
-                <Button
-                    title="アカウント作成！"
-                    onPress={this.onClickedSignup}
+                <TextInput
+                  placeholder="user@gmail.com"
+                  Value={this.state.email}
+                  onChangeText={email => this.setState({ email })}
                 />
+                <TextInput
+                    placeholder="password"
+                    Value={this.state.email}
+                    onChangeText={password => this.setState({ password })}
+                  />
+                  <Button
+                    style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+                    title="アカウント作成！"
+                    onPress={this.onClickedSignup.bind(this)}
+                  />
             </View>
         );
     }
