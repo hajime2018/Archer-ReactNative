@@ -1,17 +1,35 @@
-﻿import React from 'react';
-import firebase from 'firebase';
+import React from 'react';
+//import firebase from 'firebase';
 import { Button, StyleSheet, Text, View } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { createBottomTabNavigator, BottomTabBar, StackNavigator ,TabNavigator,createStackNavigator,createMaterialTopTabNavigator} from 'react-navigation';
 import HomeScreen from './HomeScreen';
-import MyPageScreen from './MyPageScreen';
+import MyPageScreen, { flagupdate } from './MyPageScreen';
 import LoginScreen from './LoginScreen';
 import SignupScreen from './SignupScreen';
 import RankingScreen from './RankingScreen';
 
+
+/*export var CheckFirebaseAuth = () => {
+  firebase.initializeApp({
+    apiKey: "AIzaSyBTpZFQpi2F3bUCWTg-eBM3sSsp_q_ACZY",
+    authDomain: "user-5ee06.firebaseapp.com",
+    databaseURL: "https://user-5ee06.firebaseio.com",
+    projectId: "user-5ee06",
+    storageBucket: "user-5ee06.appspot.com",
+    messagingSenderId: "135933983009"
+  });
+  //var user = firebase.auth().currentUser;
+  console.log(firebase.auth().currentUser)
+  if (user) {
+    return true;
+  } else {
+    return false;
+  }
+}*/
+
 //GLOBAL
-var Archer = {};
-Archer.loggedIn = null;
+//state = { loggedIn: null };
 
 const styles = StyleSheet.create({
   container: {
@@ -22,6 +40,8 @@ const styles = StyleSheet.create({
   },
 });
 
+const check = () => {console.log('renderApp')}
+
 const AccountTabNavigator = createMaterialTopTabNavigator(
     {
         Login: {screen: LoginScreen,},
@@ -31,17 +51,10 @@ const AccountTabNavigator = createMaterialTopTabNavigator(
 
 const RankingTabNavigator = createMaterialTopTabNavigator(
     {
-        Rise: {
-            screen: RankingScreen,
-        },
-    
-
-        Day: { screen: RankingScreen,},
+        Rise: { screen:RankingScreen , },
+        Day: { screen: RankingScreen ,},
         Week: { screen: RankingScreen,},
-        Total: { screen: RankingScreen,},
-    },
-    {
-        header:null
+        Total: { screen: RankingScreen ,},
     }
 );
 
@@ -53,10 +66,20 @@ const MyPageStuckNavigator = createStackNavigator(
         Login: {
             screen: AccountTabNavigator,
         }
-    }
+    },
+    /*{
+      initialRouteName: 'MyPage',
+      initialRouteParams: { //Launch 初始化参数
+          str: ()=>{'hello'},
+          checkauth: (flag)? true : false
+      },
+    },
+    {
+      transitionConfig: ()=> {
+        return {transitionProps;
+      }
+    }*/
 );
-
-
 
 const RootBottomTabNavigator = createBottomTabNavigator (
     {
@@ -64,7 +87,7 @@ const RootBottomTabNavigator = createBottomTabNavigator (
             screen:HomeScreen,
         },
         Ranking: {
-            screen: RankingTabNavigator,
+            screen:RankingTabNavigator,
         },
         MyPage: {
             screen: MyPageStuckNavigator,
@@ -93,35 +116,38 @@ const RootBottomTabNavigator = createBottomTabNavigator (
             activeTintColor: 'tomato',
             inactiveTintColor: 'gray',
         },
-    }  
+    }
 );
 
 class App extends React.Component {
-    componentWillMount() {
-        firebase.initializeApp({
-            apiKey: "AIzaSyBK8ri7rFLGHWz10l9BH6xYG82PjweYECk",
-            authDomain: "archer-corp.firebaseapp.com",
-            databaseURL: "https://archer-corp.firebaseio.com",
-            projectId: "archer-corp",
-            storageBucket: "archer-corp.appspot.com",
-            messagingSenderId: "208210760399"
-        });
 
-        firebase.auth().onAuthStateChanged((user) => {
-            if (user) {
-                this.setState({ loggedIn: true });
-                console.log("logged in");
-            } else {
-                this.setState({ loggedIn: false });
-                console.log("not logged in");
-            }
-        })
-    }
+  /*componentWillMount() {
+      firebase.initializeApp({
+        apiKey: "AIzaSyBTpZFQpi2F3bUCWTg-eBM3sSsp_q_ACZY",
+        authDomain: "user-5ee06.firebaseapp.com",
+        databaseURL: "https://user-5ee06.firebaseio.com",
+        projectId: "user-5ee06",
+        storageBucket: "user-5ee06.appspot.com",
+        messagingSenderId: "135933983009"
+      });
+
+      firebase.auth().onAuthStateChanged((user) => {
+          if (user) {
+              this.setState({ loggedIn: true });
+              console.log("logged in");
+          } else {
+              this.setState({ loggedIn: false });
+              console.log("not logged in");
+          }
+      })
+      //console.log(firebase.auth().currentUser);
+  }*/
 
     render() {
+        //console.log('renderApp')
+        check();
         return <RootBottomTabNavigator/>;
     }
 }
 
 export default (App);
-
